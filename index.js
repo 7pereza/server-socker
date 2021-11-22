@@ -1,8 +1,20 @@
 // https://github.com/WebDevSimplified/Realtime-Simple-Chat-App/blob/master/script.js
+const express = require("express");
+const { createServer } = require("http");
 const { Server } = require("socket.io");
 
-const io = new Server({ /* options */ });
+const app = express();
+const httpServer = createServer(app);
+const io = new Server(httpServer, { /* options */ });
+const port = process.env.PORT || 3030;
 
+io.use((socket, next) => {
+    if (isValid(socket.request)) {
+      next();
+    } else {
+      next(new Error("invalid"));
+    }
+  });
 
 
 //to test when running  http://localhost:3030/socket.io/socket.io.js
@@ -13,7 +25,7 @@ const io = new Server({ /* options */ });
 //     },
 //   })
   
-  
+ ///thing for the socker server 
   const users = {}
   io.on('connection', (socket) => {
     socket.on('new-user', username => {
@@ -38,4 +50,6 @@ const io = new Server({ /* options */ });
   // this is the end of io.on
  
   
-  io.listen(3030);
+  //io.listen(3030);
+
+  httpServer.listen(port);
