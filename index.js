@@ -5,7 +5,12 @@ const { Server } = require("socket.io");
 
 const app = express();
 const httpServer = createServer(app);
-const io = new Server(httpServer, { /* options */ });
+const io = new Server(httpServer, {  
+    cors: {
+        origin: true,
+        methods: ["GET", "POST"]
+    }
+});
 const port = process.env.PORT || 3030;
 
 io.use((socket, next) => {
