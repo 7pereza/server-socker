@@ -1,25 +1,26 @@
 // https://github.com/WebDevSimplified/Realtime-Simple-Chat-App/blob/master/script.js
 const express = require("express");
 const { createServer } = require("http");
+const { dirname } = require("path");
 const { Server } = require("socket.io");
 
 const app = express();
 const httpServer = createServer(app);
 const io = new Server(httpServer, {  
     cors: {
-        origin: true,
-        methods: ["GET", "POST"]
+        origin: true
     }
 });
 const port = process.env.PORT || 3030;
 
-io.use((socket, next) => {
-    if (isValid(socket.request)) {
-      next();
-    } else {
-      next(new Error("invalid"));
-    }
-  });
+app.use(express.static(__dirname + 'node_modules'))
+
+app.get('/', function(req, res) {
+  res.sendFile(__dirname + '/index.html');
+});
+
+//app.use('/', express.static('node_modules'));
+
 
 
 //to test when running  http://localhost:3030/socket.io/socket.io.js
