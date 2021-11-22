@@ -1,12 +1,17 @@
 // https://github.com/WebDevSimplified/Realtime-Simple-Chat-App/blob/master/script.js
+const { Server } = require("socket.io");
+
+const io = new Server({ /* options */ });
+
+
 
 //to test when running  http://localhost:3030/socket.io/socket.io.js
-const io = require('socket.io')( 3030,{
-    cors: {
-      origin: true,
-      methods: ["GET", "POST"]
-    },
-  })
+// const io = require('socket.io')( 3030,{
+//     cors: {
+//       origin: true,
+//     //   methods: ["GET", "POST"]
+//     },
+//   })
   
   
   const users = {}
@@ -30,3 +35,7 @@ const io = require('socket.io')( 3030,{
   
     });
   })
+  // this is the end of io.on
+ 
+  
+  io.listen(3030);
