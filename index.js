@@ -1,10 +1,11 @@
 // https://github.com/WebDevSimplified/Realtime-Simple-Chat-App/blob/master/script.js
 const express = require("express");
 const app = express();
+const socket = require('socket.io')
 const cors = require("cors")
 app.use(
   cors({
-    origin: "*"
+    origin: '*',
   })
 )
 
@@ -18,7 +19,7 @@ console.log("server is running") //link to test http://localhost:3030/socket.io/
 // const { dirname } = require("path");
 // const { Server } = require("socket.io");
 
-const socket = require('socket.io')
+
 //const httpServer = createServer(app);
 const io = socket(server)
 
@@ -32,10 +33,12 @@ const io = socket(server)
 ///thing for the socker server 
 const users = {}
 io.on('connection', (socket) => {
+
   socket.on('new-user', username => {
     users[socket.id] = username
     socket.broadcast.emit('user-connected', username)
   })
+
   console.log('a user connected');
   //socket.emit('chat-message', 'hello word')//sending test to users
 

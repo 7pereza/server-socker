@@ -2,10 +2,10 @@
   "name": "server-socker",
   "version": "1.0.0",
   "description": "making a node server for the socker.io api",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "dev": "nodemon index.js",
-    "start": "node index.js"
+    "dev": "nodemon server.js",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
