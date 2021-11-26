@@ -1,17 +1,18 @@
-// https://github.com/WebDevSimplified/Realtime-Simple-Chat-App/blob/master/script.js
 const express = require("express");
-const app = express();
 const socket = require('socket.io')
-const cors = require("cors")
-app.use(
-  cors({
-    origin: '*',
-  })
-)
 
 const port = process.env.PORT || 3030;
-const server = app.listen(port)
-app.use(express.static(__dirname + 'node_modules'))
+const INDEX = '/index.html';
+
+const server = express()
+.use((req, res) => res.sendFile(INDEX, { root: __dirname }))
+.listen(port, () => console.log(`Listening on ${port}`));
+
+const io = socket(server)
+
+
+// const server = app.listen(port)
+// app.use(express.static(__dirname + 'node_modules'))
 
 console.log("server is running") //link to test http://localhost:3030/socket.io/socket.io.js
 
@@ -21,7 +22,7 @@ console.log("server is running") //link to test http://localhost:3030/socket.io/
 
 
 //const httpServer = createServer(app);
-const io = socket(server)
+
 
 
 
@@ -56,6 +57,3 @@ io.on('connection', (socket) => {
 })
 // this is the end of io.on
 
-
-
-//httpServer.listen(port);
