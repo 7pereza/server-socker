@@ -1,12 +1,14 @@
-const express = require("express");
+const express = require('express');
 const socket = require('socket.io')
+const cors = require('cors')
 
 const port = process.env.PORT || 3030;
 const INDEX = '/index.html';
 
-const server = express()
+const server = express().use(cors())
 .use((req, res) => res.sendFile(INDEX, { root: __dirname }))
 .listen(port, () => console.log(`Listening on ${port}`));
+
 
 const io = socket(server)
 
@@ -15,15 +17,6 @@ const io = socket(server)
 io.use(express.static(__dirname + 'node_modules'))
 
 console.log("server is running") //link to test http://localhost:3030/socket.io/socket.io.js
-
-// const { createServer } = require("http");
-// const { dirname } = require("path");
-// const { Server } = require("socket.io");
-
-
-//const httpServer = createServer(app);
-
-
 
 
 // app.get('/', function(req, res) {
