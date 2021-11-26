@@ -1,4 +1,5 @@
-
+const express = require("express");
+const app = express();
 
 const port = process.env.PORT || 3030;
 const io = require('socket.io')(port, {
@@ -7,6 +8,8 @@ const io = require('socket.io')(port, {
     },
 })
 console.log("on port " + port)
+
+app.use(express.static(__dirname + 'node_modules'))
 
 io.on('connection', socket => {
     console.log(socket.id)
