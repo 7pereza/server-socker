@@ -12,7 +12,7 @@ const io = socket(server)
 
 
 // const server = app.listen(port)
-// app.use(express.static(__dirname + 'node_modules'))
+io.use(express.static(__dirname + 'node_modules'))
 
 console.log("server is running") //link to test http://localhost:3030/socket.io/socket.io.js
 
