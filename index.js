@@ -1,3 +1,5 @@
+//working so far
+
 const express = require('express');
 const socket = require('socket.io')
 const cors = require('cors')
@@ -12,7 +14,6 @@ const server = express().use(cors())
 
 const io = socket(server)
 
-
 // const server = app.listen(port)
 io.use(express.static(__dirname + 'node_modules'))
 
@@ -22,6 +23,8 @@ console.log("server is running") //link to test http://localhost:3030/socket.io/
 // app.get('/', function(req, res) {
 //   res.sendFile(__dirname + '/index.html');
 // });
+
+
 
 
 ///thing for the socker server 
