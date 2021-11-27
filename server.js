@@ -27,25 +27,11 @@ if (!sticky.listen(server, port)) {
   server.once('listening', function () {
     console.log('server started on ${port} port');
   });
+
+
+
 } else {
   // Worker code
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
   ///thing for the socker server 
